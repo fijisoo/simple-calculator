@@ -1,0 +1,14 @@
+/* 
+    Calculator Grid Variables
+*/
+$calculatorGridColumns: 25% 25% 25% 25%;
+$calculatorGridRows: repeat(8, 1fr);
+
+/* 
+    Calculator size variables
+*/
+$calculatorMinHeight: 568px;
+$calculatorMinWidth: 320px;
+$calculatorMaxHeight: calc(100vh * 8/10);
+$calculatorMaxWidth: calc(100vh * 4/10);
+
