@@ -1,5 +1,7 @@
 <template>
-    <div />
+    <div class='calculator'>
+        <slot />
+    </div>
 </template>
 
 <script lang="ts">
@@ -11,8 +13,10 @@
 
 <style lang="scss" scoped>
     @import '@/styles/CalculatorContainer.variables.scss';
-    div {
+    .calculator {
         display: grid;
+        width: 100%;
+        height: 100%;
         grid-template-columns: $calculatorGridColumns;
         grid-template-rows: $calculatorGridRows;
         min-height: $calculatorMinHeight;

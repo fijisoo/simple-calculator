@@ -1,6 +1,8 @@
 <template>
   <AppContainer>
-    <CalculatorContainer />
+    <CalculatorContainer>
+      <Button />
+    </CalculatorContainer>
   </AppContainer>
 </template>
 
@@ -8,11 +10,13 @@
 import { Component, Vue } from 'vue-property-decorator';
 import AppContainer from '@/containers/AppContainer.vue';
 import CalculatorContainer from '@/containers/CalculatorContainer.vue';
+import Button from '@/components/Button.vue';
 
 @Component({
   components: {
     AppContainer,
     CalculatorContainer,
+    Button,
   },
 })
 export default class App extends Vue {}

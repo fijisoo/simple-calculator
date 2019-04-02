@@ -1,0 +1,14 @@
+@import './Colors.variables.scss';
+
+$bgColors: (
+    greyishBlue: $greyishBlue,
+    darkRed: $darkRed,
+    lightRed: $lightRed,
+    lightOrange: $lightOrange,
+);
+
+@each $name, $color in $bgColors {
+    .bg--#{$name} {
+        background-color: $color;
+    }
+}

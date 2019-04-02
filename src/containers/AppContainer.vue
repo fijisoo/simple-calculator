@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='app'>
         <slot />
     </div>
 </template>
@@ -15,7 +15,7 @@
 <style lang="scss" scoped>
     @import '@/styles/AppContainer.variables.scss';
     @import '@/styles/CalculatorContainer.variables.scss';
-    div {
+    .app {
         display: flex;
         width: 100%;
         height: 100vh;
