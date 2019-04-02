@@ -1,7 +1,7 @@
 <template>
   <AppContainer>
     <CalculatorContainer>
-      <Button />
+      <Button>+</Button>
     </CalculatorContainer>
   </AppContainer>
 </template>

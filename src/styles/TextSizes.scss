@@ -1,0 +1,13 @@
+@import '@/styles/variables/Sizes.variables.scss';
+
+$textSizes: (
+    small: $textSmall,
+    medium: $textMedium,
+    large: $textLarge,
+);
+
+@each $name, $size in $textSizes {
+    .textSize--#{$name} {
+        font-size: $size;
+    }
+}

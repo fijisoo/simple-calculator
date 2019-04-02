@@ -13,8 +13,8 @@
 
 
 <style lang="scss" scoped>
-    @import '@/styles/AppContainer.variables.scss';
-    @import '@/styles/CalculatorContainer.variables.scss';
+    @import '@/styles/variables/AppContainer.variables.scss';
+    @import '@/styles/variables/CalculatorContainer.variables.scss';
     .app {
         display: flex;
         width: 100%;

@@ -1,12 +1,21 @@
 <template>
-    <div :class="`btn bg--${bgColor}`" />
+    <div :class="`btn bg--${bgColor}`">
+        <Typography :textColor="textColor">
+            <slot />
+        </Typography>
+    </div>   
 </template>
 
 <script lang="ts">
+    import Typography from '@/components/Typography.vue';
     import { BackgroundColor, TextColor } from '@/types/Colors.types.ts';
     import { Component, Prop, Vue } from 'vue-property-decorator';
 
-    @Component
+    @Component({
+        components: {
+            Typography
+        }
+    })
     export default class Button extends Vue {
         @Prop({
             default: BackgroundColor.LIGHT_RED

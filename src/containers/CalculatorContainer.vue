@@ -12,7 +12,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '@/styles/CalculatorContainer.variables.scss';
+    @import '@/styles/variables/CalculatorContainer.variables.scss';
     .calculator {
         display: grid;
         width: 100%;
