@@ -1,7 +1,7 @@
 <template>
   <AppContainer>
     <CalculatorContainer>
-      <Button>+</Button>
+      <Button contentVerticalAlign='center' contentHorizontalAlign='center'>+</Button>
     </CalculatorContainer>
   </AppContainer>
 </template>

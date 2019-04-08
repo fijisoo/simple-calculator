@@ -10,18 +10,18 @@
     @Component
     export default class Typography extends Vue {
         @Prop({
-            default: TextColor.WHITE
-        }) textColor?: TextColor
+            default: TextColor.WHITE,
+        }) private textColor?: TextColor;
 
         @Prop({
-            default: TextSize.MEDIUM
-        }) textSize?: TextSize
+            default: TextSize.MEDIUM,
+        }) private textSize?: TextSize;
 
-        get typoClasses () {
+        get typoClasses() {
             return [
                 `color--${this.textColor}`,
-                `textSize--${this.textSize}`
-            ]
+                `textSize--${this.textSize}`,
+            ];
         }
     }
 </script>

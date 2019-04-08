@@ -1,0 +1,36 @@
+$basicFlexAlignment: (
+    'start': start,
+    'end': end,
+    'flexStart': flex-start,
+    'flexEnd': flex-end,
+    'center': center,
+);
+
+$flexAlignItems: map-merge($basicFlexAlignment, (
+    'baseline': baseline,
+    'firstBaseline': first baseline,
+    'lastBaseline': last baseline,
+));
+
+$flexJustifyContent: map-merge($basicFlexAlignment, (
+    'spaceBetween': space-between,
+    'spaceAround': space-around,
+));
+
+.flex {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+@each $name, $align in $flexAlignItems {
+    .flex-align--#{$name} {
+        align-items: $align;
+    }
+}
+
+@each $name, $justify in $flexJustifyContent {
+    .flex-justify--#{$name} {
+        justify-content: $justify;
+    }
+}

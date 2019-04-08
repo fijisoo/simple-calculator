@@ -1,9 +1,9 @@
 @import '@/styles/variables/Sizes.variables.scss';
 
 $textSizes: (
-    small: $textSmall,
-    medium: $textMedium,
-    large: $textLarge,
+    'small': $textSmall,
+    'medium': $textMedium,
+    'large': $textLarge,
 );
 
 @each $name, $size in $textSizes {
