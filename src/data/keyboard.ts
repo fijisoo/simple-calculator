@@ -5,7 +5,7 @@ const keyboardKeys = [
         contentVerticalAlign: BasicAlignment.CENTER,
         contentHorizontalAlign: BasicAlignment.CENTER,
         value: '.',
-        class: ['keyButton-border-top']
+        class: ['keyButton-border-top'],
     },
     {
         contentVerticalAlign: BasicAlignment.CENTER,

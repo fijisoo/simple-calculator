@@ -28,7 +28,7 @@ export default class CalcContainer extends Vue {
             bgColor: BackgroundColor.DARK_RED,
             contentVerticalAlign: BasicAlignment.CENTER,
             contentHorizontalAlign: BasicAlignment.CENTER,
-        }
+        };
     }
 }
 </script>
