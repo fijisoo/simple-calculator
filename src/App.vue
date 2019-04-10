@@ -1,6 +1,7 @@
 <template>
   <AppLayout>
     <CalculatorLayout>
+      <CurrentNumberDisplayContainer />
       <OptionsContainer />
       <CalcContainer />
       <KeyboardContainer />
@@ -12,6 +13,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import AppLayout from '@/layouts/AppLayout.vue';
 import CalculatorLayout from '@/layouts/CalculatorLayout.vue';
+import CurrentNumberDisplayContainer from '@/containers/CurrentNumberDisplayContainer.vue';
 import OptionsContainer from '@/containers/OptionsContainer.vue';
 import CalcContainer from '@/containers/CalcContainer.vue';
 import KeyboardContainer from '@/containers/KeyboardContainer.vue';
@@ -20,6 +22,7 @@ import KeyboardContainer from '@/containers/KeyboardContainer.vue';
   components: {
     AppLayout,
     CalculatorLayout,
+    CurrentNumberDisplayContainer,
     OptionsContainer,
     CalcContainer,
     KeyboardContainer,
