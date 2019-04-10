@@ -1,7 +1,9 @@
 <template>
   <AppContainer>
     <CalculatorContainer>
-      <Button contentVerticalAlign='center' contentHorizontalAlign='center'>+</Button>
+      <OptionsContainer />
+      <CalcContainer />
+      <KeyboardContainer />
     </CalculatorContainer>
   </AppContainer>
 </template>
@@ -10,13 +12,17 @@
 import { Component, Vue } from 'vue-property-decorator';
 import AppContainer from '@/containers/AppContainer.vue';
 import CalculatorContainer from '@/containers/CalculatorContainer.vue';
-import Button from '@/components/Button.vue';
+import OptionsContainer from '@/containers/OptionsContainer.vue';
+import CalcContainer from '@/containers/CalcContainer.vue';
+import KeyboardContainer from '@/containers/KeyboardContainer.vue';
 
 @Component({
   components: {
     AppContainer,
     CalculatorContainer,
-    Button,
+    OptionsContainer,
+    CalcContainer,
+    KeyboardContainer,
   },
 })
 export default class App extends Vue {}
