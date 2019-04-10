@@ -1,25 +1,25 @@
 <template>
-  <AppContainer>
-    <CalculatorContainer>
+  <AppLayout>
+    <CalculatorLayout>
       <OptionsContainer />
       <CalcContainer />
       <KeyboardContainer />
-    </CalculatorContainer>
-  </AppContainer>
+    </CalculatorLayout>
+  </AppLayout>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import AppContainer from '@/containers/AppContainer.vue';
-import CalculatorContainer from '@/containers/CalculatorContainer.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import CalculatorLayout from '@/layouts/CalculatorLayout.vue';
 import OptionsContainer from '@/containers/OptionsContainer.vue';
 import CalcContainer from '@/containers/CalcContainer.vue';
 import KeyboardContainer from '@/containers/KeyboardContainer.vue';
 
 @Component({
   components: {
-    AppContainer,
-    CalculatorContainer,
+    AppLayout,
+    CalculatorLayout,
     OptionsContainer,
     CalcContainer,
     KeyboardContainer,
