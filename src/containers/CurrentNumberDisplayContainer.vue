@@ -10,8 +10,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Typography from '@/components/Typography.vue';
 import Flex from '@/components/Flex.vue';
-import { BackgroundColor } from '@/types/Colors.types';
-import { BasicAlignment } from '@/types/Align.types';
 
 interface CurrentNumberStyle {
   fontSize: string;
@@ -25,14 +23,17 @@ interface CurrentNumberStyle {
 })
 export default class CurrentNumberDisplayContainer extends Vue {
     // Fallback before connecting to Vuex
-    private number = '1';
+    private number = '1460';
     private fontSizeBase: number = 6;
     private fontSizeDivider: number = 14;
     private minFontSize: number = 2.5;
     private currentNumberFlexWrapperClass: string = 'currentNumberFlexWrapper';
 
-    get currentNumberDisplayClasses(): [string] {
-        return ['current-number-display-container'];
+    get currentNumberDisplayClasses(): string[] {
+        return [
+          'current-number-display-container',
+          'number-display-wrapper-padding',
+        ];
     }
 
     get currentNumber(): string {
@@ -68,6 +69,8 @@ export default class CurrentNumberDisplayContainer extends Vue {
 
 <style lang="scss">
     @import '@/styles/variables/Colors.variables.scss';
+    @import '@/styles/NumberDisplay.scss';
+
     .current-number-display-container {
       display: grid;
       grid-area: 2/1/4/5;

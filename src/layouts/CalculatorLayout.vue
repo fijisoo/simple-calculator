@@ -23,7 +23,6 @@
         max-height: $calculatorMaxHeight;
         min-width: $calculatorMinWidth;
         max-width: $calculatorMaxWidth;
-        background: grey;
     }
 </style>
 
