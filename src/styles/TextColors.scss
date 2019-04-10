@@ -1,0 +1,12 @@
+@import '@/styles/variables/Colors.variables.scss';
+
+$textColors: (
+    'white': $white,
+    'grey': $grey,
+);
+
+@each $name, $color in $textColors {
+    .color--#{$name} {
+        color: $color;
+    }
+}

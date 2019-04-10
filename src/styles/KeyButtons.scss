@@ -1,0 +1,24 @@
+$borderHeight: 1px;
+$borderColor: grey;
+
+.keyButton-border-top {
+    border-top: $borderHeight solid $borderColor;
+}
+
+.keyButton-border-bottom {
+    border-bottom: $borderHeight solid $borderColor;
+}
+
+@mixin keyButtonGrid($gridRowStart, $gridColumnStart, $gridRowEnd, $gridColumnEnd, $templateColums: '', $templateRows: '') {
+    display: grid;
+    grid-row-start: $gridRowStart;
+    grid-column-start: $gridColumnStart;
+    grid-row-end: $gridRowEnd;
+    grid-column-end: $gridColumnEnd;
+    @if ($templateColums != '') {
+        grid-template-columns: $templateColums;
+    }
+    @if ($templateRows != '') {
+        grid-template-rows: $templateRows;
+    }
+}
