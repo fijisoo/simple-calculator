@@ -35,7 +35,7 @@ export default class KeyboardContainer extends Vue {
   .keyboard-container {
     @include keyButtonGrid(5, 1, 9, 4,
     repeat(3, 1fr),
-    repeat(3, calc(25% - $borderHeight)) 25%);
+    repeat(4, 24.9%));
   }
 
   .zero-key {

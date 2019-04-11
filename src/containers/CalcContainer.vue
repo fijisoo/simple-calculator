@@ -35,6 +35,6 @@ export default class CalcContainer extends Vue {
   .calc-container {
     @include keyButtonGrid(4, 4, 9, 4,
     '',
-    repeat(4, calc(20% - $borderHeight)) 20%);
+    20% repeat(4, 19.92%));
   }
 </style>

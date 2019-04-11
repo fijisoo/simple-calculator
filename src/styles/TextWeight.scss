@@ -1,0 +1,13 @@
+@import '@/styles/variables/Weight.variables.scss';
+
+$textWeight: (
+    'light': $weightLight,
+    'regular': $weightRegular,
+    'bold': $weightBold
+);
+
+@each $name, $weight in $textWeight {
+    .textWeight--#{$name} {
+        font-weight: $weight;
+    }
+}

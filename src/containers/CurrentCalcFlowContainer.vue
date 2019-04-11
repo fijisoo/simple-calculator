@@ -1,7 +1,7 @@
 <template>
   <div :class="currentCalcFlowClasses">
     <Flex :class='flexWrapperClass' contentHorizontalAlign='flexEnd' contentVerticalAlign='flexEnd'>
-      <Typography textColor='grey' textSize='xsmall'>{{number}}</Typography>
+      <Typography textWeight='light' textColor='grey' textSize='xsmall'>{{number}}</Typography>
     </Flex>
   </div>
 </template>
