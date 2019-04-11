@@ -1,7 +1,7 @@
 <template>
   <div :class="currentNumberDisplayClasses">
     <Flex :class='currentNumberFlexWrapperClass' contentHorizontalAlign='flexEnd'>
-      <Typography :style="currentNumberStyle">{{currentNumber}}</Typography>
+      <Typography textSize='xlarge'>{{currentNumber}}</Typography>
     </Flex>
   </div>
 </template>
@@ -10,6 +10,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Typography from '@/components/Typography.vue';
 import Flex from '@/components/Flex.vue';
+import { getNumberWithCommas } from '@/utils/numberWithCommas';
 
 interface CurrentNumberStyle {
   fontSize: string;
@@ -24,9 +25,6 @@ interface CurrentNumberStyle {
 export default class CurrentNumberDisplayContainer extends Vue {
     // Fallback before connecting to Vuex
     private number = '1460';
-    private fontSizeBase: number = 6;
-    private fontSizeDivider: number = 14;
-    private minFontSize: number = 2.5;
     private currentNumberFlexWrapperClass: string = 'currentNumberFlexWrapper';
 
     get currentNumberDisplayClasses(): string[] {
@@ -37,32 +35,7 @@ export default class CurrentNumberDisplayContainer extends Vue {
     }
 
     get currentNumber(): string {
-      const numberString: string = String(this.number);
-      const [full, decimal] = numberString.split('.') as [string, string];
-      const fullWithCommas: string =
-      full
-          .split('')
-          .reverse()
-          .reduce((acc: string, currentNumber: string, currentIndex: number): string => {
-            const insertComma = currentIndex !== 0 && currentIndex % 3 === 0;
-            return insertComma ? `${currentNumber},${acc}` : `${currentNumber}${acc}`;
-        },
-      '');
-      return fullWithCommas + (decimal ? `.${decimal}` : '');
-    }
-
-    get currentNumberStyle(): CurrentNumberStyle {
-      return {
-        fontSize: `${this.dynamicFontSize}vmax`,
-      };
-    }
-
-    get dynamicFontSize(): number {
-      const numberSize: number = String(this.number).length;
-      const calculatedFontSize: number = this.fontSizeBase - Number(numberSize / this.fontSizeDivider);
-      return (calculatedFontSize < this.minFontSize)
-        ? this.minFontSize
-        : calculatedFontSize;
+      return getNumberWithCommas(this.number);
     }
 }
 </script>
@@ -70,6 +43,7 @@ export default class CurrentNumberDisplayContainer extends Vue {
 <style lang="scss">
     @import '@/styles/variables/Colors.variables.scss';
     @import '@/styles/NumberDisplay.scss';
+    @import '@/styles/TextFlow.scss';
 
     .current-number-display-container {
       display: grid;
@@ -78,6 +52,6 @@ export default class CurrentNumberDisplayContainer extends Vue {
     }
 
     .currentNumberFlexWrapper {
-      word-break: break-word;
+      @include getEllipsis();
     }
 </style>

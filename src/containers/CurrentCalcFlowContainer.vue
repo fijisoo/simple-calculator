@@ -34,6 +34,8 @@ export default class CurrentCalcFlowContainer extends Vue {
 <style lang="scss">
     @import '@/styles/variables/Colors.variables.scss';
     @import '@/styles/NumberDisplay.scss';
+    @import '@/styles/TextFlow.scss';
+
     .current-calc-flow-container {
       display: grid;
       grid-area: 1/1/1/5;
@@ -41,8 +43,6 @@ export default class CurrentCalcFlowContainer extends Vue {
     }
 
     .current-calc-flow-flex-wrapp {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis
+      @include getEllipsis();
     }
 </style>
