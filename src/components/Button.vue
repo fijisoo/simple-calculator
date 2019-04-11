@@ -1,6 +1,6 @@
 <template>
     <div @click="onClick" :class="buttonClasses">
-        <Typography textSize='small' :textColor="textColor">
+        <Typography textWeight='light' textSize='small' :textColor="textColor">
             <slot />
         </Typography>
     </div>   

@@ -1,5 +1,8 @@
+@import './variables/Colors.variables.scss';
+
 $borderHeight: 1px;
-$borderColor: grey;
+$borderColor: $grey;
+
 
 .keyButton-border-top {
     border-top: $borderHeight solid $borderColor;

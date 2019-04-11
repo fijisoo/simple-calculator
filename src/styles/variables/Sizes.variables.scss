@@ -1,3 +1,5 @@
-$textSmall: 4vmax;
-$textMedium: 5vmax;
-$textLarge: 8vmax;
+$textXSmall: calc(1.25rem + (100vw / 50));
+$textSmall: calc(1.8rem + (100vw / 50));
+$textMedium: calc(2.25rem + (100vw / 50));
+$textLarge: calc(2.8rem + (100vw / 50));
+$textXLarge: calc(4rem + (100vw / 50));
