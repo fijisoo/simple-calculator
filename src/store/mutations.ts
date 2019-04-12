@@ -1,7 +1,6 @@
 import { StateStructure } from './initState';
-
-const dot: string = '.';
-const zero: string = '0';
+import { CalcOperations } from '@/types/Calc.types';
+import { dot, zero } from '@/utils/Calc.values';
 
 const updateActiveNumber = (state: StateStructure, newDigit: string) => {
     const isDot: boolean = newDigit === dot;
@@ -17,12 +16,34 @@ const updateActiveNumber = (state: StateStructure, newDigit: string) => {
     state.activeNumber = state.activeNumber + newDigit;
 };
 
+const setActiveNumber = (state: StateStructure, newActiveNumber: string) => {
+    state.activeNumber = newActiveNumber;
+};
+
+const addOperations = (state: StateStructure, operation: CalcOperations) => {
+    state.allOperations = [ ...state.allOperations, operation ];
+};
+
+const addNumber = (state: StateStructure, newNumber: string) => {
+    state.allNumbers = [ ...state.allNumbers, newNumber ];
+};
+
+const setAfterEqual = (state: StateStructure, newValue: boolean) => {
+    state.clearAfterEqual = newValue;
+};
+
 const clearCalcData = (state: StateStructure) => {
     state.activeNumber = '' as string;
     state.allNumbers = [] as string[];
+    state.allOperations = [] as CalcOperations[];
+    state.clearAfterEqual = false;
 };
 
 export {
     updateActiveNumber,
     clearCalcData,
+    addOperations,
+    addNumber,
+    setActiveNumber,
+    setAfterEqual,
 };

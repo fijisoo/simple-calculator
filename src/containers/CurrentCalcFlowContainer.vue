@@ -1,13 +1,14 @@
 <template>
   <div :class="currentCalcFlowClasses">
     <Flex :class='flexWrapperClass' contentHorizontalAlign='flexEnd' contentVerticalAlign='flexEnd'>
-      <Typography textWeight='light' textColor='grey' textSize='xsmall'>{{number}}</Typography>
+      <Typography textWeight='light' textColor='grey' textSize='xsmall'>{{currentFlowValues}}</Typography>
     </Flex>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 import Typography from '@/components/Typography.vue';
 import Flex from '@/components/Flex.vue';
 
@@ -18,8 +19,12 @@ import Flex from '@/components/Flex.vue';
   },
 })
 export default class CurrentCalcFlowContainer extends Vue {
-    // Fallback before connecting to Vuex
-    private number = '365 x 4  =';
+    @State('allNumbers')
+    private allNumbers!: string[];
+
+    @State('allOperations')
+    private allOperations!: string[];
+
     private flexWrapperClass: string = 'current-calc-flow-flex-wrapp';
 
     get currentCalcFlowClasses(): string[] {
@@ -27,6 +32,14 @@ export default class CurrentCalcFlowContainer extends Vue {
           'current-calc-flow-container',
           'number-display-wrapper-padding',
         ];
+    }
+
+    get currentFlowValues(): string {
+      return this.allNumbers.reduce(
+        (acc: string, currentNumber: string, currentIndex: number): string => {
+          return `${acc} ${currentNumber} ${this.allOperations[currentIndex] || ''}`;
+        }
+      , '');
     }
 }
 </script>
