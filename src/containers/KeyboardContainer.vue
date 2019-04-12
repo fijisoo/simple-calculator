@@ -4,6 +4,7 @@
         v-for="({ value, ...props}, index) in keyboardKeys" 
         :key='index'
         v-bind='props'
+        @click.native='updateActiveNumber(value)'
     >
         {{ value }}
     </Button>
@@ -12,6 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 import Button from '@/components/Button.vue';
 import { keyboardKeys } from '@/data/keyboard';
 
@@ -22,7 +24,10 @@ import { keyboardKeys } from '@/data/keyboard';
 })
 export default class KeyboardContainer extends Vue {
     private keyboardKeys = keyboardKeys;
-    get keyboardClasses() {
+    @Mutation('updateActiveNumber')
+    private updateActiveNumber!: (value: string) => void;
+
+    get keyboardClasses(): string[] {
         return [
             'keyboard-container',
         ];

@@ -1,4 +1,6 @@
 const getNumberWithCommas = (startNumber: number|string): string => {
+    const zero: string = '0';
+    if (!startNumber) { return zero; }
     const numberString: string = String(startNumber);
     const [full, decimal] = numberString.split('.') as [string, string];
     const fullWithCommas: string =
@@ -10,7 +12,10 @@ const getNumberWithCommas = (startNumber: number|string): string => {
           return insertComma ? `${currentNumber},${acc}` : `${currentNumber}${acc}`;
       },
     '');
-    return fullWithCommas + (decimal ? `.${decimal}` : '');
+    const decimalWithDot: string = decimal ? `.${decimal}` : '';
+    return fullWithCommas
+        ? fullWithCommas + decimalWithDot
+        : zero + (decimalWithDot || '.');
 };
 
 export {

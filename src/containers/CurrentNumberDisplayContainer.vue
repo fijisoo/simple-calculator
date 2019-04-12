@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { mapState } from 'vuex';
 import Typography from '@/components/Typography.vue';
 import Flex from '@/components/Flex.vue';
 import { getNumberWithCommas } from '@/utils/numberWithCommas';
@@ -21,10 +22,12 @@ interface CurrentNumberStyle {
     Typography,
     Flex,
   },
+  computed: {
+    ...mapState(['activeNumber']),
+  },
 })
 export default class CurrentNumberDisplayContainer extends Vue {
-    // Fallback before connecting to Vuex
-    private number = '1460';
+    private activeNumber!: string;
     private currentNumberFlexWrapperClass: string = 'currentNumberFlexWrapper';
 
     get currentNumberDisplayClasses(): string[] {
@@ -35,7 +38,7 @@ export default class CurrentNumberDisplayContainer extends Vue {
     }
 
     get currentNumber(): string {
-      return getNumberWithCommas(this.number);
+      return getNumberWithCommas(this.activeNumber);
     }
 }
 </script>

@@ -1,12 +1,13 @@
 <template>
   <div :class="OptionsClasses">
-    <Button v-bind='OptionsProps'>AC</Button>
+    <Button v-bind='OptionsProps' @click.native='clearCalcData'>AC</Button>
     <Button v-bind='OptionsProps'>SAVE</Button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Mutation } from 'vuex-class';
 import Button from '@/components/Button.vue';
 import { BackgroundColor } from '@/types/Colors.types';
 import { BasicAlignment } from '@/types/Align.types';
@@ -17,6 +18,8 @@ import { BasicAlignment } from '@/types/Align.types';
   },
 })
 export default class CalcContainer extends Vue {
+    @Mutation('clearCalcData')
+    private clearCalcData!: () => void;
     get OptionsClasses() {
         return [
             'options-container',
