@@ -1,6 +1,16 @@
+import { dot, zero } from '@/utils/Calc.values';
+
 const getNumberWithCommas = (startNumber: number|string): string => {
+    const isEmpty: boolean = !startNumber;
+    const isZero: boolean = startNumber === zero;
+    const isDot: boolean = startNumber === dot;
+    if (isEmpty || isZero) { return zero; }
+    if (isDot) { return zero + dot; }
+
     const numberString: string = String(startNumber);
-    const [full, decimal] = numberString.split('.') as [string, string];
+    const hasDot: boolean = numberString.includes(dot);
+    const [full, decimal = ''] = numberString.split('.') as [string, string];
+
     const fullWithCommas: string =
     full
         .split('')
@@ -9,8 +19,9 @@ const getNumberWithCommas = (startNumber: number|string): string => {
           const insertComma = currentIndex !== 0 && currentIndex % 3 === 0;
           return insertComma ? `${currentNumber},${acc}` : `${currentNumber}${acc}`;
       },
-    '');
-    return fullWithCommas + (decimal ? `.${decimal}` : '');
+    '') || zero;
+
+    return fullWithCommas + (hasDot ? dot : '') + decimal;
 };
 
 export {

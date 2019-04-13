@@ -4,6 +4,7 @@
         v-for="({ value, ...props}, index) in calcKeys" 
         :key='index'
         v-bind='props'
+        @click.native='resolveOperation(value)'
     >
         {{ value }}
     </Button>
@@ -12,8 +13,10 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Action } from 'vuex-class';
 import Button from '@/components/Button.vue';
 import { calcKeys } from '@/data/calc';
+import { CalcOperations } from '@/types/Calc.types';
 
 @Component({
   components: {
@@ -22,6 +25,9 @@ import { calcKeys } from '@/data/calc';
 })
 export default class CalcContainer extends Vue {
     private calcKeys = calcKeys;
+    @Action('resolveOperation')
+    private resolveOperation!: (operation: CalcOperations) => void;
+
     get CalcClasses() {
         return [
             'calc-container',
