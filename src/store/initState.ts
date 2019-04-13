@@ -6,7 +6,8 @@ interface StateStructure {
     activeNumber: string;
     clearAfterEqual: boolean;
     hasError: boolean;
-    caclApproach: CalcApproach;
+    calcApproach: CalcApproach;
+    approachModal: boolean;
 }
 
 const initState: StateStructure = {
@@ -15,7 +16,8 @@ const initState: StateStructure = {
     activeNumber: '',
     clearAfterEqual: false,
     hasError: false,
-    caclApproach: CalcApproach.VANILLA,
+    calcApproach: CalcApproach.VANILLA,
+    approachModal: false,
 };
 
 export {

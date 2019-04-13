@@ -44,7 +44,7 @@ const resolveOperation = ({ dispatch, commit, state }: CalcActionsInterface, ope
             dispatch('handleError');
             return;
         }
-        activeNumberToSet = getFinalNumber(state.allNumbers, state.allOperations, state.caclApproach);
+        activeNumberToSet = getFinalNumber(state.allNumbers, state.allOperations, state.calcApproach);
     } else {
         activeNumberToSet = empty;
     }

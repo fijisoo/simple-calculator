@@ -1,5 +1,6 @@
 <template>
   <div :class="currentCalcFlowClasses">
+    <Typography @click.native='toggleApproachModal()' textWeight='light' textColor='grey' :class='settingsTextClass'>Settings</Typography>
     <Flex :class='flexWrapperClass' contentHorizontalAlign='flexEnd' contentVerticalAlign='flexEnd'>
       <Typography textWeight='light' textColor='grey' textSize='xsmall'>{{currentFlowValues}}</Typography>
     </Flex>
@@ -8,7 +9,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { Mutation, State } from 'vuex-class';
 import Typography from '@/components/Typography.vue';
 import Flex from '@/components/Flex.vue';
 
@@ -25,7 +26,11 @@ export default class CurrentCalcFlowContainer extends Vue {
     @State('allOperations')
     private allOperations!: string[];
 
+    @Mutation('toggleApproachModal')
+    private toggleApproachModal!: (modalState: boolean)  => void;
+
     private flexWrapperClass: string = 'current-calc-flow-flex-wrapp';
+    private settingsTextClass: string = 'settings-text';
 
     get currentCalcFlowClasses(): string[] {
         return [
@@ -57,5 +62,9 @@ export default class CurrentCalcFlowContainer extends Vue {
 
     .current-calc-flow-flex-wrapp {
       @include getEllipsis();
+    }
+
+    .settings-text {
+      font-size: initial !important;
     }
 </style>

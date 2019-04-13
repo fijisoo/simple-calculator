@@ -9,6 +9,8 @@ import {
   setActiveNumber,
   setAfterEqual,
   setHasError,
+  toggleApproachModal,
+  setApproach,
 } from './mutations';
 import {
   resolveOperation as resolveOperationFn,
@@ -29,6 +31,8 @@ export default new Vuex.Store({
     setActiveNumber,
     setAfterEqual,
     setHasError,
+    toggleApproachModal,
+    setApproach,
   },
   actions: {
     updateActiveNumber: resolveKeyboardClick(),

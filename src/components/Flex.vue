@@ -19,9 +19,24 @@
             default: BasicAlignment.FLEX_START,
         }) private contentHorizontalAlign?: HorizontalAlign;
 
+        @Prop({
+            default: false,
+        }) private fullFlex?: boolean;
+
+        @Prop({
+            default: false,
+        }) private fullFlexWidth?: boolean;
+
+        @Prop({
+            default: false,
+        }) private fullFlexHeight?: boolean;
+
         get flexClasses() {
             return [
                 'flex',
+                (this.fullFlex && 'flex-full'),
+                (this.fullFlexWidth && 'flex-full-width'),
+                (this.fullFlexHeight && 'flex-full-height'),
                 `flex-align--${this.contentVerticalAlign}`,
                 `flex-justify--${this.contentHorizontalAlign}`,
             ];

@@ -19,7 +19,18 @@ $flexJustifyContent: map-merge($basicFlexAlignment, (
 
 .flex {
     display: flex;
+}
+
+.flex-full {
     width: 100%;
+    height: 100%;
+}
+
+.flex-full-width {
+    width: 100%;
+}
+
+.flex-full-height {
     height: 100%;
 }
 
