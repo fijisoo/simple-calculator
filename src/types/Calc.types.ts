@@ -1,8 +1,25 @@
-const ADDITION = 'ADDITION';
-const SUBTRACTION = 'SUBTRACTION';
-const DIVISION = 'DIVISION';
-const MULTIPLICATION = 'MULTIPLICATION';
-const EQUAL = 'EQUAL';
+import { Commit, Dispatch } from 'vuex/types/index';
+import { StateStructure } from '@/store/initState';
+
+interface CalcActionsInterface {
+    commit: Commit;
+    dispatch: Dispatch;
+    state: StateStructure;
+}
+
+
+interface ComplexStructInterface {
+    index: number;
+    value: string|number;
+    operation: CalcOperations;
+}
+
+interface ResolvedComplexStructInterface {
+    startPos: number;
+    amountOfPos: number;
+    value: string;
+    operation: CalcOperations;
+}
 
 enum CalcOperations {
     ADDITION = '+',
@@ -18,6 +35,9 @@ enum CalcApproach {
 }
 
 export {
+    CalcActionsInterface,
+    ComplexStructInterface,
+    ResolvedComplexStructInterface,
     CalcOperations,
     CalcApproach,
 };

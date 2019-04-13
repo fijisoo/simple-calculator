@@ -37,6 +37,7 @@ const clearCalcData = (state: StateStructure) => {
     state.allNumbers = [] as string[];
     state.allOperations = [] as CalcOperations[];
     state.clearAfterEqual = false;
+    state.hasError = false;
 };
 
 export {

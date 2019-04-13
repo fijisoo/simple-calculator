@@ -1,30 +1,22 @@
-import { CalcOperations, CalcApproach } from '@/types/Calc.types';
+import {
+    CalcOperations,
+    CalcApproach,
+    ComplexStructInterface,
+    ResolvedComplexStructInterface,
+} from '@/types/Calc.types';
 
 const simpleOperations = [CalcOperations.ADDITION, CalcOperations.SUBTRACTION, CalcOperations.EQUAL];
 const complexOperations = [CalcOperations.DIVISION, CalcOperations.MULTIPLICATION];
-
-interface ComplexStruct {
-    index: number;
-    value: string|number;
-    operation: CalcOperations;
-}
-
-interface ResolvedComplexStruct {
-    startPos: number;
-    amountOfPos: number;
-    value: string;
-    operation: CalcOperations;
-}
 
 const getFinalNumber = (numbers: string[], operations: CalcOperations[], approach: CalcApproach): string => {
     const numbersArray = [ ...numbers ];
     const operationsArray = [ ...operations ];
 
-    const ComplexStructsMap: ComplexStruct[][] = getComplexStructsMap(numbers, operations);
+    const ComplexStructsMap: ComplexStructInterface[][] = getComplexStructsMap(numbers, operations);
     ComplexStructsMap
-        .map((complexStructArray: ComplexStruct[]) => resolveComplexStruct(complexStructArray, approach))
+        .map((complexStructArray: ComplexStructInterface[]) => resolveComplexStruct(complexStructArray, approach))
         .reverse()
-        .map((resolvedStruct: ResolvedComplexStruct) => {
+        .map((resolvedStruct: ResolvedComplexStructInterface) => {
             numbersArray.splice(resolvedStruct.startPos, resolvedStruct.amountOfPos, resolvedStruct.value);
             operationsArray.splice(resolvedStruct.startPos, resolvedStruct.amountOfPos, resolvedStruct.operation);
         });
@@ -32,13 +24,13 @@ const getFinalNumber = (numbers: string[], operations: CalcOperations[], approac
 };
 
 const getComplexStructsMap = (numbers: string[], operations: CalcOperations[]) => {
-    const ComplexStructsMap: ComplexStruct[][] = [];
+    const ComplexStructsMap: ComplexStructInterface[][] = [];
     operations.reduce(
-        (acc: ComplexStruct[], operation: CalcOperations, opIndex: number): ComplexStruct[] => {
+        (acc: ComplexStructInterface[], operation: CalcOperations, opIndex: number): ComplexStructInterface[] => {
             const isComplex: boolean = complexOperations.includes(operation);
             const prevIsComplex = complexOperations.includes(operations[opIndex - 1]);
 
-            const complexStruct: ComplexStruct = { index: opIndex, value: numbers[opIndex], operation };
+            const complexStruct: ComplexStructInterface = { index: opIndex, value: numbers[opIndex], operation };
             if (!isComplex && prevIsComplex) {
                 ComplexStructsMap.push([ ...acc, complexStruct ]);
                 return [];
@@ -47,16 +39,16 @@ const getComplexStructsMap = (numbers: string[], operations: CalcOperations[]) =
             } else {
                 return acc;
             }
-    }, [] as ComplexStruct[]);
+    }, [] as ComplexStructInterface[]);
     return ComplexStructsMap;
 };
 
-const resolveComplexStruct = (complexStructArray: ComplexStruct[], approach: CalcApproach) => {
+const resolveComplexStruct = (complexStructArray: ComplexStructInterface[], approach: CalcApproach) => {
     const [firstComplexStruct, ...restComplexStructs] = complexStructArray;
 
     const reducedComplexStructs =
     restComplexStructs.reduce(
-        (accStruct: ComplexStruct, actualStruct: ComplexStruct): ComplexStruct => {
+        (accStruct: ComplexStructInterface, actualStruct: ComplexStructInterface): ComplexStructInterface => {
             const newValue: number = calc(
                 Number(accStruct.value),
                 Number(actualStruct.value),
