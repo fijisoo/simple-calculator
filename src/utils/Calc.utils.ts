@@ -11,21 +11,21 @@ const simpleOperations = [CalcOperations.ADDITION, CalcOperations.SUBTRACTION, C
 const complexOperations = [CalcOperations.DIVISION, CalcOperations.MULTIPLICATION];
 
 const hasDividingByZero = (numbers: string[], operations: CalcOperations[]) => {
-    interface SimpleMapping {
+    interface ZeroMapping {
         value: string;
         index: number;
     }
     const zerosWithIndexes = numbers.reduce(
-        (acc, value: string, index: number): SimpleMapping[] => {
+        (acc, value: string, index: number): ZeroMapping[] => {
             const isZero: boolean = value === zero;
             return isZero
                 ? [ ...acc, { value, index } ]
                 : acc;
         }
-    , [] as SimpleMapping[]);
+    , [] as ZeroMapping[]);
 
     return zerosWithIndexes.some(
-        (zeroObj: SimpleMapping) => {
+        (zeroObj: ZeroMapping) => {
             const previousOpIsDevision: boolean = operations[zeroObj.index - 1] === CalcOperations.DIVISION;
             return previousOpIsDevision;
         },
