@@ -36,6 +36,7 @@ const resolveCalcClick = () => {
 const resolveOperation = ({ dispatch, commit, state }: CalcActionsInterface, operation: CalcOperations) => {
     const isEqual: boolean = operation === CalcOperations.EQUAL;
     let activeNumberToSet: string;
+    commit('addOperations', operation);
     if (isEqual) {
         commit('setAfterEqual', true);
         const dividingByZero: boolean = hasDividingByZero(state.allNumbers, state.allOperations);
@@ -47,7 +48,6 @@ const resolveOperation = ({ dispatch, commit, state }: CalcActionsInterface, ope
     } else {
         activeNumberToSet = empty;
     }
-    commit('addOperations', operation);
     commit('setActiveNumber', activeNumberToSet);
 };
 

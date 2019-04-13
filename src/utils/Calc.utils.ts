@@ -1,3 +1,4 @@
+import Big from 'big.js';
 import {
     CalcOperations,
     CalcApproach,
@@ -97,10 +98,12 @@ const resolveSimpleStruct = (numbers: string[], operations: CalcOperations[], ap
 };
 
 const calc = (firstNumber: number, secondNumber: number, operation: CalcOperations, approach: CalcApproach): number => {
-    return calcVanilla(firstNumber, secondNumber, operation);
+    return approach === CalcApproach.VANILLA
+        ? calcVanilla(firstNumber, secondNumber, operation)
+        : calcDependency(firstNumber, secondNumber, operation);
 };
 
-const calcVanilla = (firstNumber: number, secondNumber: number, operation: CalcOperations) => {
+const calcVanilla = (firstNumber: number, secondNumber: number, operation: CalcOperations): number => {
     switch (operation) {
         case CalcOperations.ADDITION:
           return firstNumber + secondNumber;
@@ -114,6 +117,26 @@ const calcVanilla = (firstNumber: number, secondNumber: number, operation: CalcO
         case CalcOperations.DIVISION:
           return firstNumber / secondNumber;
           break;
+        default:
+          return firstNumber;
+    }
+};
+
+const calcDependency = (firstNumber: number, secondNumber: number, operation: CalcOperations): number => {
+    const bigFirstNumber = new Big(firstNumber);
+    switch (operation) {
+        case CalcOperations.ADDITION:
+            return Number(bigFirstNumber.plus(secondNumber).toString());
+            break;
+        case CalcOperations.SUBTRACTION:
+            return Number(bigFirstNumber.minus(secondNumber).toString());
+            break;
+        case CalcOperations.MULTIPLICATION:
+            return Number(bigFirstNumber.times(secondNumber).toString());
+            break;
+        case CalcOperations.DIVISION:
+            return Number(bigFirstNumber.div(secondNumber).toString());
+            break;
         default:
           return firstNumber;
     }
