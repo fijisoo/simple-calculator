@@ -9,7 +9,7 @@ import {
   setActiveNumber,
   setAfterEqual,
 } from './mutations';
-import { resolveOperation as resolveOperationFn, resolveCalcClick } from './actions';
+import { resolveOperation as resolveOperationFn, resolveKeyboardClick, resolveCalcClick } from './actions';
 
 Vue.use(Vuex);
 
@@ -24,8 +24,8 @@ export default new Vuex.Store({
     setAfterEqual,
   },
   actions: {
-    updateActiveNumber: resolveCalcClick('updateActiveNumber'),
-    resolveOperation: resolveCalcClick('resolveOperationFn', true),
+    updateActiveNumber: resolveKeyboardClick(),
+    resolveOperation: resolveCalcClick(),
     resolveOperationFn,
   },
 });

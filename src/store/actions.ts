@@ -1,7 +1,8 @@
 import { Commit, Dispatch } from 'vuex/types/index';
 import { StateStructure } from './initState';
-import { CalcOperations } from '@/types/Calc.types';
+import { CalcOperations, CalcApproach } from '@/types/Calc.types';
 import { zero, empty } from '@/utils/Calc.values';
+import { getFinalNumber } from '@/utils/Calc.utils';
 
 interface CalcActionsinterface {
     commit: Commit;
@@ -9,16 +10,23 @@ interface CalcActionsinterface {
     state: StateStructure;
 }
 
-const resolveCalcClick = (methodName: string, otherAction: boolean = false) => {
-    return ({ dispatch, state, commit }: CalcActionsinterface, ...args: any) => {
+const resolveKeyboardClick = () => {
+    return ({ state, commit }: CalcActionsinterface, ...args: any) => {
         if (state.clearAfterEqual) {
             commit('clearCalcData');
         }
-        if (otherAction) {
-            dispatch(methodName, ...args);
-        } else {
-            commit(methodName, ...args);
+        commit('updateActiveNumber', ...args);
+    };
+};
+
+const resolveCalcClick = () => {
+    return ({ dispatch, state, commit }: CalcActionsinterface, ...args: any) => {
+        if (state.clearAfterEqual) {
+            const resolvedActive: string = state.activeNumber;
+            commit('clearCalcData');
+            commit('addNumber', resolvedActive);
         }
+        dispatch('resolveOperationFn', ...args);
     };
 };
 
@@ -27,16 +35,19 @@ const resolveOperation = ({ commit, state }: CalcActionsinterface, operation: Ca
     const isActiveNumberEmpty: boolean = !state.activeNumber;
 
     const numberToAdd: string = isActiveNumberEmpty ? zero : state.activeNumber;
-    const activeNumberToSet: string = isEqual ? zero : empty;
     commit('addOperations', operation);
     commit('addNumber', numberToAdd);
-    commit('setActiveNumber', activeNumberToSet);
     if (isEqual) {
         commit('setAfterEqual', true);
     }
+    const activeNumberToSet: string = isEqual
+    ? getFinalNumber(state.allNumbers, state.allOperations, CalcApproach.VANILLA)
+    : empty;
+    commit('setActiveNumber', activeNumberToSet);
 };
 
 export {
+    resolveKeyboardClick,
     resolveCalcClick,
     resolveOperation,
 };

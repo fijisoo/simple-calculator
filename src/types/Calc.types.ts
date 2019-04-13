@@ -1,3 +1,9 @@
+const ADDITION = 'ADDITION';
+const SUBTRACTION = 'SUBTRACTION';
+const DIVISION = 'DIVISION';
+const MULTIPLICATION = 'MULTIPLICATION';
+const EQUAL = 'EQUAL';
+
 enum CalcOperations {
     ADDITION = '+',
     SUBTRACTION = '-',
@@ -6,6 +12,12 @@ enum CalcOperations {
     EQUAL = '=',
 }
 
+enum CalcApproach {
+    VANILLA = 'VANILLA',
+    DEPENDENCY = 'DEPENDENCY',
+}
+
 export {
     CalcOperations,
+    CalcApproach,
 };
