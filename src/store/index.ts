@@ -8,8 +8,14 @@ import {
   addNumber,
   setActiveNumber,
   setAfterEqual,
+  setHasError,
 } from './mutations';
-import { resolveOperation as resolveOperationFn, resolveKeyboardClick, resolveCalcClick } from './actions';
+import {
+  resolveOperation as resolveOperationFn,
+  resolveKeyboardClick,
+  resolveCalcClick,
+  handleError,
+} from './actions';
 
 Vue.use(Vuex);
 
@@ -22,10 +28,12 @@ export default new Vuex.Store({
     addNumber,
     setActiveNumber,
     setAfterEqual,
+    setHasError,
   },
   actions: {
     updateActiveNumber: resolveKeyboardClick(),
     resolveOperation: resolveCalcClick(),
     resolveOperationFn,
+    handleError,
   },
 });

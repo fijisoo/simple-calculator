@@ -4,9 +4,32 @@ import {
     ComplexStructInterface,
     ResolvedComplexStructInterface,
 } from '@/types/Calc.types';
+import { zero } from './Calc.values';
 
 const simpleOperations = [CalcOperations.ADDITION, CalcOperations.SUBTRACTION, CalcOperations.EQUAL];
 const complexOperations = [CalcOperations.DIVISION, CalcOperations.MULTIPLICATION];
+
+const hasDividingByZero = (numbers: string[], operations: CalcOperations[]) => {
+    interface SimpleMapping {
+        value: string;
+        index: number;
+    }
+    const zerosWithIndexes = numbers.reduce(
+        (acc, value: string, index: number): SimpleMapping[] => {
+            const isZero: boolean = value === zero;
+            return isZero
+                ? [ ...acc, { value, index } ]
+                : acc;
+        }
+    , [] as SimpleMapping[]);
+
+    return zerosWithIndexes.some(
+        (zeroObj: SimpleMapping) => {
+            const previousOpIsDevision: boolean = operations[zeroObj.index - 1] === CalcOperations.DIVISION;
+            return previousOpIsDevision;
+        },
+    );
+};
 
 const getFinalNumber = (numbers: string[], operations: CalcOperations[], approach: CalcApproach): string => {
     const numbersArray = [ ...numbers ];
@@ -97,6 +120,7 @@ const calcVanilla = (firstNumber: number, secondNumber: number, operation: CalcO
 };
 
 export {
+    hasDividingByZero,
     getFinalNumber,
 };
 

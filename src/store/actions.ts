@@ -1,7 +1,7 @@
 import { StateStructure } from './initState';
 import { CalcOperations, CalcActionsInterface } from '@/types/Calc.types';
 import { zero, empty } from '@/utils/Calc.values';
-import { getFinalNumber } from '@/utils/Calc.utils';
+import { hasDividingByZero, getFinalNumber } from '@/utils/Calc.utils';
 
 const resolveKeyboardClick = () => {
     return ({ state, commit }: CalcActionsInterface, ...args: any) => {
@@ -33,22 +33,33 @@ const resolveCalcClick = () => {
     };
 };
 
-const resolveOperation = ({ commit, state }: CalcActionsInterface, operation: CalcOperations) => {
+const resolveOperation = ({ dispatch, commit, state }: CalcActionsInterface, operation: CalcOperations) => {
     const isEqual: boolean = operation === CalcOperations.EQUAL;
+    let activeNumberToSet: string;
     if (isEqual) {
         commit('setAfterEqual', true);
+        const dividingByZero: boolean = hasDividingByZero(state.allNumbers, state.allOperations);
+        if (dividingByZero) {
+            dispatch('handleError');
+            return;
+        }
+        activeNumberToSet = getFinalNumber(state.allNumbers, state.allOperations, state.caclApproach);
+    } else {
+        activeNumberToSet = empty;
     }
-    const activeNumberToSet: string = isEqual
-        ? getFinalNumber(state.allNumbers, state.allOperations, state.caclApproach)
-        : empty;
-
     commit('addOperations', operation);
     commit('setActiveNumber', activeNumberToSet);
+};
+
+const handleError = ({ commit, state }: CalcActionsInterface) => {
+    commit('setHasError', true);
+    commit('setAfterEqual', true);
 };
 
 export {
     resolveKeyboardClick,
     resolveCalcClick,
     resolveOperation,
+    handleError,
 };
 

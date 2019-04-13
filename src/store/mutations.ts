@@ -32,6 +32,10 @@ const setAfterEqual = (state: StateStructure, newValue: boolean) => {
     state.clearAfterEqual = newValue;
 };
 
+const setHasError = (state: StateStructure, error: boolean) => {
+    state.hasError = error;
+};
+
 const clearCalcData = (state: StateStructure) => {
     state.activeNumber = '' as string;
     state.allNumbers = [] as string[];
@@ -47,4 +51,5 @@ export {
     addNumber,
     setActiveNumber,
     setAfterEqual,
+    setHasError,
 };
