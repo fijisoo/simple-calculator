@@ -40,6 +40,10 @@ const toggleApproachModal = (state: StateStructure) => {
     state.approachModal = !state.approachModal;
 };
 
+const toggleTableModal = (state: StateStructure) => {
+    state.tableModal = !state.tableModal;
+};
+
 const setApproach = (state: StateStructure, newApporach: CalcApproach) => {
     state.calcApproach = newApporach;
 };
@@ -61,5 +65,6 @@ export {
     setAfterEqual,
     setHasError,
     toggleApproachModal,
+    toggleTableModal,
     setApproach,
 };

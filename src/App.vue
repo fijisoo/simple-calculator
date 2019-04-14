@@ -1,6 +1,7 @@
 <template>
   <AppLayout>
     <ModalApproachContainer />
+    <ModalSumTableContainer />
     <CalculatorLayout>
       <CurrentCalcFlowContainer />
       <CurrentNumberDisplayContainer />
@@ -15,6 +16,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import AppLayout from '@/layouts/AppLayout.vue';
 import ModalApproachContainer from '@/containers/ModalApproachContainer.vue';
+import ModalSumTableContainer from '@/containers/ModalSumTableContainer.vue';
 import CalculatorLayout from '@/layouts/CalculatorLayout.vue';
 import CurrentCalcFlowContainer from '@/containers/CurrentCalcFlowContainer.vue';
 import CurrentNumberDisplayContainer from '@/containers/CurrentNumberDisplayContainer.vue';
@@ -32,6 +34,7 @@ import KeyboardContainer from '@/containers/KeyboardContainer.vue';
     CalcContainer,
     KeyboardContainer,
     ModalApproachContainer,
+    ModalSumTableContainer,
   },
 })
 export default class App extends Vue {}
