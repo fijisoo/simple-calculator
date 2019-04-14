@@ -10,6 +10,7 @@ import {
   setAfterEqual,
   setHasError,
   toggleApproachModal,
+  toggleTableModal,
   setApproach,
 } from './mutations';
 import {
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     setAfterEqual,
     setHasError,
     toggleApproachModal,
+    toggleTableModal,
     setApproach,
   },
   actions: {

@@ -1,6 +1,9 @@
 <template>
   <div :class="currentCalcFlowClasses">
-    <Typography @click.native='toggleApproachModal()' textWeight='light' textColor='grey' :class='settingsTextClass'>Settings</Typography>
+    <Flex>
+      <Typography @click.native='toggleApproachModal()' textWeight='light' textColor='grey' :class='settingsTextClass'>Settings</Typography>
+      <Typography @click.native='toggleTableModal()' textWeight='light' textColor='grey' :class='settingsTextClass'>Table</Typography>
+    </Flex>
     <Flex :class='flexWrapperClass' contentHorizontalAlign='flexEnd' contentVerticalAlign='flexEnd'>
       <Typography textWeight='light' textColor='grey' textSize='xsmall'>{{currentFlowValues}}</Typography>
     </Flex>
@@ -27,7 +30,10 @@ export default class CurrentCalcFlowContainer extends Vue {
     private allOperations!: string[];
 
     @Mutation('toggleApproachModal')
-    private toggleApproachModal!: (modalState: boolean)  => void;
+    private toggleApproachModal!: ()  => void;
+
+    @Mutation('toggleTableModal')
+    private toggleTableModal!: ()  => void;
 
     private flexWrapperClass: string = 'current-calc-flow-flex-wrapp';
     private settingsTextClass: string = 'settings-text';
@@ -66,5 +72,6 @@ export default class CurrentCalcFlowContainer extends Vue {
 
     .settings-text {
       font-size: initial !important;
+      padding-right: 1em;
     }
 </style>

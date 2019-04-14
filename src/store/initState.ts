@@ -8,6 +8,7 @@ interface StateStructure {
     hasError: boolean;
     calcApproach: CalcApproach;
     approachModal: boolean;
+    tableModal: boolean;
 }
 
 const initState: StateStructure = {
@@ -18,6 +19,7 @@ const initState: StateStructure = {
     hasError: false,
     calcApproach: CalcApproach.VANILLA,
     approachModal: false,
+    tableModal: false,
 };
 
 export {
